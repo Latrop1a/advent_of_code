@@ -61,6 +61,7 @@ export default function () {
   //calling function to find the correct values
   const values = findSumOf2(inputArr);
   const values2 = findSumOf3(inputArr);
+
   console.log(`Two values that sum to 2020: ${values.ele1} + ${values.ele2}`);
   console.log(`Product from those: ${values.ele1 * values.ele2}`);
   console.log('--------------------------------');
