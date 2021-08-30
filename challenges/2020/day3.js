@@ -18,6 +18,7 @@ Check how many trees encounter for specific slope jumps to the end of map.
 
  */
 
+// checks if there is a tree at specific line and position
 export const isTree = (mapStr, position) => {
   // get correct index pos by using modulo
   position = position % mapStr.length;
@@ -42,14 +43,6 @@ export const mapTraverse = (mapStringArr, down, right) => {
     const ele = mapStringArr[posX];
     // check if tree
     console.log(posX, posY);
-    if (isTree(ele, posY)) numOfTrees++;
-  }
-  for (posX += down; posX < mapStringArr.length; posX += down) {
-    // ele is current position on map
-    const ele = mapStringArr[posX];
-    // x axis jump
-    posY += right;
-    // check if tree is at position
     if (isTree(ele, posY)) numOfTrees++;
   }
   return numOfTrees;
