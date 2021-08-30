@@ -1,7 +1,5 @@
 // gets the input file
 import { inputs } from '../../index.js';
-// for testing
-import assert from 'assert';
 
 /**
  * 1-3 a: abcde
@@ -13,12 +11,12 @@ import assert from 'assert';
  */
 
 // parses the input line into password, rule and char to check
-const parsePasswordString = passwordString => {
+export const parsePasswordString = passwordString => {
   //splitting string into 3 parts
   const splitArr = passwordString.split(' ');
   // example [ '5-17', 'z:', 'knzcjlgjlkvglrsqzwt' ]
   // refining output to use in checkPassword function
-  let pwRangeArr = splitArr[0].split('-').map(ele => parseInt(ele));
+  const pwRangeArr = splitArr[0].split('-').map(ele => parseInt(ele));
   const charToCheck = splitArr[1].substring(0, 1);
   const password = splitArr[2];
 
@@ -26,7 +24,7 @@ const parsePasswordString = passwordString => {
 };
 
 // checks if the password is valid according to the rules set in part1
-const checkPasswordValidity1 = parsedPwObj => {
+export const checkPasswordValidity1 = parsedPwObj => {
   // splitting passwordStr on char occurence and counting resulting array
   const count = parsedPwObj.password.split(parsedPwObj.charToCheck).length - 1;
   // returning true if char count is between the password range provided
@@ -36,7 +34,7 @@ const checkPasswordValidity1 = parsedPwObj => {
 };
 
 // checks if the password is valid according to the rules set in part2
-const checkPasswordValidity2 = parsedPwObj => {
+export const checkPasswordValidity2 = parsedPwObj => {
   let counter = 0;
   //destructuring obj for better readability
   const { password: pw, charToCheck: char, pwRangeArr: posArr } = parsedPwObj;
@@ -70,74 +68,3 @@ export default function () {
     `In the corrupted file are ${validPwCount2} valid Passwords present for ruleset 2`
   );
 }
-
-// tests
-// put into same file because too lazy right now
-const testing = () => {
-  // test parse String
-  // deepEqual because object values are compared instead of object
-  assert.deepStrictEqual(
-    parsePasswordString('5-17 z: knzcjlgjlkvglrsqzwt'),
-    {
-      pwRangeArr: [5, 17],
-      charToCheck: 'z',
-      password: 'knzcjlgjlkvglrsqzwt',
-    },
-    'failed to parse rule-pw-string'
-  );
-
-  // test validityRule1
-  assert.strictEqual(
-    checkPasswordValidity1({
-      pwRangeArr: [1, 3],
-      charToCheck: 'a',
-      password: 'abcde',
-    }),
-    true,
-    'rule1 fail'
-  );
-
-  // test validityRule2
-  assert.strictEqual(
-    checkPasswordValidity2({
-      pwRangeArr: [1, 3],
-      charToCheck: 'a',
-      password: 'abcde',
-    }),
-    true,
-    'rule2 fail 1'
-  );
-
-  assert.strictEqual(
-    checkPasswordValidity2({
-      pwRangeArr: [4, 13],
-      charToCheck: 'j',
-      password: 'sjjjjjjjjjjjtjj',
-    }),
-    true,
-    'rule2 fail 2'
-  );
-
-  //2-9 c: ccccccccc
-  assert.strictEqual(
-    checkPasswordValidity2({
-      pwRangeArr: [2, 9],
-      charToCheck: 'c',
-      password: 'ccccccccc',
-    }),
-    false,
-    'rule2 fail 3'
-  );
-
-  assert.strictEqual(
-    checkPasswordValidity2({
-      pwRangeArr: [17, 18],
-      charToCheck: 'x',
-      password: 'xxxxxxxxxxxxxxxxkxx',
-    }),
-    true,
-    'rule2 fail 4'
-  );
-};
-
-testing();
