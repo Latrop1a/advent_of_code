@@ -24,7 +24,7 @@ export const parsePasswordString = passwordString => {
 };
 
 // checks if the password is valid according to the rules set in part1
-export const checkPasswordValidity1 = parsedPwObj => {
+export const isPasswordValid1 = parsedPwObj => {
   // splitting passwordStr on char occurence and counting resulting array
   const count = parsedPwObj.password.split(parsedPwObj.charToCheck).length - 1;
   // returning true if char count is between the password range provided
@@ -34,7 +34,7 @@ export const checkPasswordValidity1 = parsedPwObj => {
 };
 
 // checks if the password is valid according to the rules set in part2
-export const checkPasswordValidity2 = parsedPwObj => {
+export const isPasswordValid2 = parsedPwObj => {
   let counter = 0;
   //destructuring obj for better readability
   const { password: pw, charToCheck: char, pwRangeArr: posArr } = parsedPwObj;
@@ -57,8 +57,8 @@ export default function () {
     // parsing password Rule line into usable parts
     const parsedStringObj = parsePasswordString(ele);
     // putting those into checkValidity function. if valid returns true and validPassword counter goes up
-    if (checkPasswordValidity1(parsedStringObj)) validPwCount1++;
-    if (checkPasswordValidity2(parsedStringObj)) validPwCount2++;
+    if (isPasswordValid1(parsedStringObj)) validPwCount1++;
+    if (isPasswordValid2(parsedStringObj)) validPwCount2++;
   });
   // reporting number of valid passwords
   console.log(

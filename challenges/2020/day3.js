@@ -61,20 +61,23 @@ export default function () {
   const mapStringArr = inputs.year20day3.trim().split('\n');
 
   // challenge 1
-  const treeCount1 = mapTraverse(mapStringArr, 1, 3);
+  const treeCountArr = [];
+  treeCountArr[0] = mapTraverse(mapStringArr, 1, 3);
 
   // challenge 2
   // multiply tree counts of different jumps
-  const treeCount2 = mapTraverse(mapStringArr, 1, 1);
-  const treeCount3 = mapTraverse(mapStringArr, 1, 5);
-  const treeCount4 = mapTraverse(mapStringArr, 1, 7);
-  const treeCount5 = mapTraverse(mapStringArr, 2, 1);
-  const productTreeCount =
-    treeCount1 * treeCount2 * treeCount3 * treeCount4 * treeCount5;
+  treeCountArr[1] = mapTraverse(mapStringArr, 1, 1);
+  treeCountArr[2] = mapTraverse(mapStringArr, 1, 5);
+  treeCountArr[3] = mapTraverse(mapStringArr, 1, 7);
+  treeCountArr[4] = mapTraverse(mapStringArr, 2, 1);
+  // reducing tree array to product of all
+  const productTreeCount = treeCountArr.reduce(
+    (product, trees) => product * trees
+  );
 
-  // reporting number of valid passwords
+  // reporting number of valid passwords and product for challenge 2
   console.log(
-    `When moving 3 right and 1 down, we encounter ${treeCount1} trees in total.`
+    `When moving 3 right and 1 down, we encounter ${treeCountArr[0]} trees in total.`
   );
   console.log(`When multiplying all tree counts, we get ${productTreeCount}.`);
 }
