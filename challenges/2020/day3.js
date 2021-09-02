@@ -30,20 +30,19 @@ export const isTree = (mapStr, position) => {
 // traverses the map using certain jumps on x and y axis. negative values to other directions
 // returning number of trees encountered
 export const mapTraverse = (mapStringArr, down, right) => {
-  let posX = 0,
-    posY = 0,
+  let posY = 0,
+    posX = 0,
     numOfTrees = 0;
   // simulating each jump and stopping at end of map
-  while (posX < mapStringArr.length - 1) {
+  while (posY < mapStringArr.length - 1) {
     // y axis move
-    posX += down;
+    posY += down;
     // x axis move
-    posY += right;
+    posX += right;
     // ele is current biome position on map
-    const ele = mapStringArr[posX];
+    const ele = mapStringArr[posY];
     // check if tree
-    console.log(posX, posY);
-    if (isTree(ele, posY)) numOfTrees++;
+    if (isTree(ele, posX)) numOfTrees++;
   }
   return numOfTrees;
 };

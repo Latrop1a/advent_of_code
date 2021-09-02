@@ -6,12 +6,14 @@ import readline from 'readline';
 import day1 from './challenges/2020/day1.js';
 import day2 from './challenges/2020/day2.js';
 import day3 from './challenges/2020/day3.js';
+import day4 from './challenges/2020/day4.js';
 
 // all input reads in one central object
 export const inputs = {
   year20day1: fs.readFileSync(`./inputs/2020-1.txt`, 'utf-8'),
   year20day2: fs.readFileSync(`./inputs/2020-2.txt`, 'utf-8'),
   year20day3: fs.readFileSync(`./inputs/2020-3.txt`, 'utf-8'),
+  year20day4: fs.readFileSync(`./inputs/2020-4.txt`, 'utf-8'),
 };
 
 // to use readline streams
@@ -35,7 +37,7 @@ function init() {
   console.log('Welcome to ADVENT OF CODE\n--------------------------------');
   rl.question('Select Day by number ', day => {
     day = parseInt(day);
-    if (day > 0 && day < 4) {
+    if (day > 0 && day <= 4) {
       console.log(`Getting results for DAY ${day}:\n`);
       switch (day) {
         case 1:
@@ -50,6 +52,9 @@ function init() {
           day3();
           rl.close();
           break;
+        case 4:
+          day4();
+          rl.close();
         default:
           console.log('Something went wrong');
           rl.close();
