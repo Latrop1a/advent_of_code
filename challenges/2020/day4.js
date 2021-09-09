@@ -95,7 +95,7 @@ export const isPassportValid2 = passportMap => {
 };
 
 // checks if all keys are there
-const areAllKeysThere = ppMap => {
+export const areAllKeysThere = ppMap => {
   if (
     ppMap.has('byr') &&
     ppMap.has('iyr') &&
@@ -113,14 +113,14 @@ const areAllKeysThere = ppMap => {
 
 // check hair color values
 // using regExp
-const isHairColorValid = value => {
+export const isHairColorValid = value => {
   // reg exp to check whether string starts with # and follows with 6 chars in range
   const regExp = new RegExp(/^#{1}[a-f, 0-9]{6}$/, 'g');
   if (regExp.test(value)) return true;
   return false;
 };
 
-const isHeightValid = value => {
+export const isHeightValid = value => {
   if (value.includes('cm')) {
     const splitArr = value.split('c');
     if (splitArr[0] < 150 || splitArr[0] > 193) return false;
@@ -133,7 +133,7 @@ const isHeightValid = value => {
 
 // checks each required key and returns false if values are out of bounds hcl
 // could put a switch here
-const isKeyValuePairValid = (key, value) => {
+export const isKeyValuePairValid = (key, value) => {
   const eyeColorArr = ['amb', 'blu', 'brn', 'gry', 'grn', 'hzl', 'oth'];
   //checking simple keys
   if (key === 'byr' && (value < 1920 || value > 2002)) return false;
