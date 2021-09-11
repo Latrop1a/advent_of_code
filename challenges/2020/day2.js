@@ -60,6 +60,7 @@ export default function () {
     if (isPasswordValid1(parsedStringObj)) validPwCount1++;
     if (isPasswordValid2(parsedStringObj)) validPwCount2++;
   });
+
   // reporting number of valid passwords
   console.log(
     `In the corrupted file are ${validPwCount1} valid Passwords present for ruleset 1`
